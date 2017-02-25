@@ -2,7 +2,8 @@
 
 pipeline {
     agent any
-
+    parallel{
+        echo "Demo2 branch"
     stages {
         stage('Build') {
             steps {
@@ -19,5 +20,6 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+    }
     }
 }
