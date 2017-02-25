@@ -1,25 +1,18 @@
 #!groovy
 
-pipeline {
-    agent any
-    parallel{
-        echo "Demo3 branch"
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
-    }
-}
+parallel (
+    "stream 1" : { 
+                     node { 
+                           unstash "binary"                           
+                           sh "sleep 20s" 
+                           sh "echo hstream1"
+                       } 
+                   },
+    "stream 2" : { 
+                     node { 
+                           unstash "binary"
+                           sh "echo hello2"
+                           sh "hashtag fail"                                                       
+                       } 
+                   }
+          )
