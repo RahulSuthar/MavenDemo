@@ -1,17 +1,17 @@
 #!groovy
 
 node {
-    parallel(){
+   
     stage 'Build'
         echo 'Building'
 
-    stage 'Artifactory configuration'
+    stage '1'
        echo 'Configuring'
 
-    stage 'Exec Maven'
+    stage '2n'
        echo 'Execution'
 
-    stage 'Publish build info'
+    stage '3'
         echo 'Publishing'
-    }
+  
 }
