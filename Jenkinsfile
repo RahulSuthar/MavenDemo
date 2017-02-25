@@ -3,7 +3,7 @@
 pipeline {
     agent any
     parallel{
-        echo "Demo2 branch"
+        echo "Demo3 branch"
     stages {
         stage('Build') {
             steps {
