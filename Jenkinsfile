@@ -1,21 +1,16 @@
 #!groovy
 
 node {
-    def server = Artifactory.newServer url: SERVER_URL, credentialsId: CREDENTIALS
-    def rtMaven = Artifactory.newMavenBuild()
-
+    
     stage 'Build'
-        git url: 'https://github.com/jfrogdev/project-examples.git'
+        echo 'Building'
 
     stage 'Artifactory configuration'
-        rtMaven.tool = MAVEN_TOOL // Tool name from Jenkins configuration
-        rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
-        rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
-        def buildInfo = Artifactory.newBuildInfo()
+       echo 'Configuring'
 
     stage 'Exec Maven'
-        rtMaven.run pom: 'maven-example/pom.xml', goals: 'clean install', buildInfo: buildInfo
+       echo 'Execution'
 
     stage 'Publish build info'
-        server.publishBuildInfo buildInfo
+        echo 'Publishing'
 }
