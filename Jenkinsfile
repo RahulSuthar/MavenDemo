@@ -1,25 +1,17 @@
 #!groovy
 
-pipeline {
-    agent any
-    parallel{
-        echo "Demo2 branch"
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
+node {
+    parallel(){
+    stage 'Build'
+        echo 'Building'
+
+    stage 'Artifactory configuration'
+       echo 'Configuring'
+
+    stage 'Exec Maven'
+       echo 'Execution'
+
+    stage 'Publish build info'
+        echo 'Publishing'
     }
 }
